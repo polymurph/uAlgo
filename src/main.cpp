@@ -20,13 +20,17 @@ int main()
     Matrix C(3, 4, 1);
     Matrix D("B.txt");
 
-    B = B_1 + B;
-    //B = B_1,B_1;
+    Matrix E(3,4,2);
+    Matrix F(4,3,2);
+
     
+    E.print();
+    F.print();
+
+    B = E * F;
 
     B.print();
     
-    B_1.print();
 
     return 0;
 }

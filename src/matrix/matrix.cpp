@@ -37,12 +37,12 @@ Matrix::Matrix(const char * fileName)
 
     // Task 1
     // Keeps track of the Column and row sizes
-    int colSize = 0;
-    int rowSize = 0;
+    uint32_t colSize = 0;
+    uint32_t rowSize = 0;
     
     // read it as a vector
     string line_A;
-    int idx = 0;
+    uint32_t idx = 0;
     double element_A;
     double *vector_A = nullptr;
 
@@ -75,13 +75,13 @@ Matrix::Matrix(const char * fileName)
 
     file_A.close();
     
-    int j;
+    uint32_t j;
     idx = 0;
     m_matrix.resize(rowSize);
-    for (unsigned i = 0; i < m_matrix.size(); i++) {
+    for (uint32_t i = 0; i < m_matrix.size(); i++) {
         m_matrix[i].resize(colSize);
     }
-    for (int i = 0; i < rowSize; i++)
+    for (uint32_t i = 0; i < rowSize; i++)
     {
         for (j = 0; j < colSize; j++)
         {
@@ -158,15 +158,21 @@ Matrix Matrix::operator*(Matrix &A)
     assert(m_colSize == A.m_rowSize);
 
     Matrix mul(m_rowSize,A.m_colSize,0);
-
+    double sum = 0;
     for(uint32_t i = 0; i < mul.m_rowSize;i++){
         for(uint32_t j = 0;j < mul.m_colSize;j++){
-            for()
-            A.m_matrix[][j]
+            sum = 0;
+            for(uint32_t k = 0 ; k < m_colSize; k++){
+                sum += m_matrix[i][k] * A.m_matrix[k][j];
+            }
+            mul.m_matrix[i][j] = sum;
+            cout << sum << endl;
         }
     }
+    cout << "...done!" << endl;
+    return mul;
 }
-
+#if 0
 // Hadamard multiplication
 Matrix Matrix::operator,(Matrix &A)
 {
@@ -181,3 +187,4 @@ Matrix Matrix::operator,(Matrix &A)
     }
     return hmul;
 }
+#endif
