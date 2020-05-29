@@ -156,7 +156,7 @@ Matrix Matrix::operator-(Matrix &A)
 Matrix Matrix::operator*(Matrix &A)
 {
     assert(m_colSize == A.m_rowSize);
-
+    cout << "Matrix multiplication..." << endl;
     Matrix mul(m_rowSize,A.m_colSize,0);
     double sum = 0;
     for(uint32_t i = 0; i < mul.m_rowSize;i++){
@@ -166,7 +166,24 @@ Matrix Matrix::operator*(Matrix &A)
                 sum += m_matrix[i][k] * A.m_matrix[k][j];
             }
             mul.m_matrix[i][j] = sum;
-            cout << sum << endl;
+        }
+    }
+    cout << "...done!" << endl;
+    return mul;
+}
+
+Matrix operator*(double x)
+{
+    cout << "Scalar multiplication..." << endl;
+    Matrix mul(m_rowSize,m_colSize,0);
+    double sum = 0;
+    for(uint32_t i = 0; i < mul.m_rowSize;i++){
+        for(uint32_t j = 0;j < mul.m_colSize;j++){
+            sum = 0;
+            for(uint32_t k = 0 ; k < m_colSize; k++){
+                sum += m_matrix[i][k] * x;
+            }
+            mul.m_matrix[i][j] = sum;
         }
     }
     cout << "...done!" << endl;

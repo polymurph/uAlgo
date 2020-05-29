@@ -35,6 +35,11 @@ class Matrix {
     Matrix(const char * fileName);
     //Matrix(const Matrix &);
     ~Matrix();
+
+
+    uint32_t get_n_rows(){ return m_rowSize;};
+    uint32_t get_n_cols(){ return m_colSize;};
+
     // Matrix Operations
     //Matrix operator=(Matrix&A);
     Matrix operator+(Matrix &A);
@@ -46,6 +51,8 @@ class Matrix {
 #endif
 
     Matrix operator*(Matrix &A);
+    Matrix operator*(double &x);
+    
     //Matrix transpose();
 
     void print();
